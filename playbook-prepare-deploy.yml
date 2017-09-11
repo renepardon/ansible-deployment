@@ -1,0 +1,8 @@
+---
+- name: local | prepare deployment of api
+  hosts: 127.0.0.1
+  connection: local
+  pre_tasks:
+    - include: tasks/pre/load-vars.yml
+  roles:
+    - roles/prepare

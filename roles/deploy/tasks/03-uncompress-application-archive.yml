@@ -1,0 +1,5 @@
+- name: "deploy | unarchive {{ deployment_directory }}/releases/{{ release_time }}/deploy.tar.gz"
+  unarchive:
+    src: "{{ deployment_directory }}/releases/{{ release_time }}/deploy.tar.gz"
+    dest: "{{ deployment_directory }}/releases/{{ release_time }}/"
+    remote_src: True

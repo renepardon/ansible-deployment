@@ -1,0 +1,8 @@
+---
+- include: 01-local-setup.yml
+- include: 02-create-app-archive.yml
+- include: 03-extract-app-archive.yml
+- include: 04-install-dependencies.yml
+- include: 05-build-documentation.yml
+- include: 06-delete-blacklisted-files.yml
+- include: 07-create-deploy-archive.yml

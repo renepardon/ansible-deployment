@@ -1,0 +1,7 @@
+---
+- name: local | create deploy archive
+  shell: tar -czf dist/deploy.tar.gz -C src .
+  args:
+    chdir: "{{ application_directory }}/build/"
+    creates: "{{ application_directory }}/build/dist/deploy.tar.gz"
+

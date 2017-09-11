@@ -1,0 +1,17 @@
+---
+- name: local | setup - remove build directory
+  file:
+    state: absent
+    path: "{{ application_directory }}/build"
+
+- name: local | setup - create build/src directory
+  file:
+    path: "{{ application_directory }}/build/src"
+    state: directory
+    mode: 0755
+
+- name: local | setup - create build/dist directory
+  file:
+    path: "{{ application_directory }}/build/dist"
+    state: directory
+    mode: 0755

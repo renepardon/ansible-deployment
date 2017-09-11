@@ -1,0 +1,79 @@
+---
+# Application root directory on your local system
+#------------------------------------------------------------------
+application_directory: "/projects/<company>/<your-local-projectfolder>"
+
+# Application deployment root directory (NOT the public directory
+# as we create a *current* symlink to the releases/ folder which
+# will be the public folder. So adjust the webserver to serve the
+# application from the <deployment_directory>/current directory)
+#------------------------------------------------------------------
+deployment_directory: "/var/www/vhosts/<application-specific-directory>"
+
+# All four should be www-data in general applications but with the
+# amazing PLESK we have to adjust to the correct user owner and
+# groups
+#------------------------------------------------------------------
+current_folder_owner: deployer
+current_folder_group: psaserv
+file_owner: deployer
+file_group: psacln
+
+# Define a list of "dependency" commands to execute to install
+# required dependencies/packages which your application needs to
+# build the application package
+#------------------------------------------------------------------
+dependency_commands:
+  - npm install
+  - quilk release=prod
+  - composer install --no-dev
+  - php app/console assetic:dump
+  - php app/console cache:clear --env=prod
+
+# The following service names are different from host to host so
+# you have to choose the correct name to restart PHP and HTTPD
+# services
+#------------------------------------------------------------------
+php_fpm_service_name: "php5-fpm"
+httpd_service_name: apache2
+
+# These files/folders won't be deployed to the server. It doesn't
+# make sense to deploy "bullshit" and senselese files which just
+# waste space and are a security problem if deployed!
+#------------------------------------------------------------------
+file_blacklist:
+  - node_modules
+  - .env.example
+  - .env.testing.example
+  - .gitattributes
+  - .gitignore
+  - composer.json
+  - composer.lock
+  - issue_template.md
+  - package.json
+  - phpunit-runner.sh
+  - phpunit.xml
+  - postman
+  - scripts
+  - tests
+  - webpack.mix.js
+  - .ansible
+  - gulpfile.js
+  - behat.yml
+  - behat.yml.dist
+  - ide-twig.json
+  - auth.json
+  - .php_cs.cache
+  - .php_cs
+  - .buildpath
+  - .babelrc
+  - .dockerignore
+  - Dockerfile
+  - GETTING_STARTED.md
+  - INSTALL.md
+  - UPGRADE.md
+  - RUNNING_BEHAT.md
+  - quilk.js
+  - .travis.yml
+  - .gitmessage
+  - .gitmodules

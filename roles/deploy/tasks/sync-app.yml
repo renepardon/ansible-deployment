@@ -1,0 +1,31 @@
+---
+- name: "deploy | HACK ... remove {{ deployment_directory }} directory"
+  file:
+    path: "{{ deployment_directory }}"
+    state: absent
+
+- name: "deploy | HACK ... create {{ deployment_directory }} directory"
+  file:
+    path: "{{ deployment_directory }}"
+    owner: www-data
+    group: www-data
+    mode: 02775
+    state: directory
+
+# TODO sync to releases folder and change symlink to current release after synchronize finished and remove the hacks above
+
+- name: "deploy | synchronize {{ application_directory }}/build/src/ to remote {{ deployment_directory }}/"
+  synchronize:
+    src: "{{ application_directory }}/build/src/"
+    dest: "{{ deployment_directory }}/"
+    compress: yes
+    checksum: yes
+    delete: yes
+    recursive: yes
+    links: yes
+    mode: push
+    rsync_path: /usr/bin/rsync
+    rsync_opts:
+      - --no-motd
+      - --no-perms
+      - --omit-dir-times

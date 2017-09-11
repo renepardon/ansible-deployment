@@ -1,0 +1,9 @@
+---
+- debug:
+    msg: "Branch used for deployment archive: {{ deploy_branch }}"
+
+- name: local | create app archive
+  shell: "git archive {{ deploy_branch }} --format=tar | gzip > {{ application_directory }}/build/src/app.tar.gz"
+  args:
+    chdir: "{{ application_directory }}/"
+    creates: "{{ application_directory }}/build/src/app.tar.gz"

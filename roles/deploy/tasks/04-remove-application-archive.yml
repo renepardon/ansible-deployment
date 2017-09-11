@@ -1,0 +1,5 @@
+- name: "deploy | remove {{ deployment_directory }}/releases/{{ release_time }}/deploy.tar.gz"
+  file:
+    path: "{{ deployment_directory }}/releases/{{ release_time }}/deploy.tar.gz"
+    state: absent
+    force: yes

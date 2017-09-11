@@ -1,0 +1,6 @@
+---
+- name: "deploy | php artisan down | {{ deployment_directory }}"
+  shell: php artisan down
+  args:
+    chdir: "{{ deployment_directory }}/"
+  ignore_errors: yes

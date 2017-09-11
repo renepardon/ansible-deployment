@@ -1,0 +1,11 @@
+---
+- name: deploy | check if /etc/supervisor/supervisord.conf exists
+  stat: path=/etc/supervisor/supervisord.conf
+  register: supervisord_conf
+
+- name: deploy | stop supervisord
+  supervisorctl:
+    name: "laravel-worker:"
+    state: stopped
+  ignore_errors: yes
+  when: supervisord_conf.stat.exists

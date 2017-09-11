@@ -1,0 +1,11 @@
+---
+- set_fact:
+    release_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+
+- name: "deploy | create release folder {{ deployment_directory }}/releases/{{ release_time }}"
+  file:
+    path: "{{ deployment_directory }}/releases/{{ release_time }}"
+    state: directory
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+    mode: 0755

@@ -1,0 +1,7 @@
+- name: "deploy | set file permissions on application files"
+  file:
+    path: "{{ deployment_directory }}/releases/{{ release_time }}/"
+    mode: u=rwX,g=rX,o=rX
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+    recurse: yes

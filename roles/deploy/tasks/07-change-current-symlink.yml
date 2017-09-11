@@ -1,0 +1,7 @@
+- name: "deploy | change current symlinks to {{ deployment_directory }}/releases/{{ release_time }}"
+  file:
+    src: "{{ deployment_directory }}/releases/{{ release_time }}"
+    dest: "{{ deployment_directory }}/current"
+    owner: "{{ current_folder_owner }}"
+    group: "{{ current_folder_group }}"
+    state: link

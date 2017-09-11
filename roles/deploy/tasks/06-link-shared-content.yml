@@ -1,0 +1,9 @@
+- name: "deploy | add symlinks from {{ deployment_directory }}/shared directory into current release"
+  file:
+    src: "{{ deployment_directory }}/shared/{{ item.source }}"
+    dest: "{{ deployment_directory }}/releases/{{ release_time }}/{{ item.target }}"
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+    state: link
+    force: yes
+  with_items: "{{ application_symlinks }}"

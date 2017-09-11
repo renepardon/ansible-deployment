@@ -1,0 +1,9 @@
+---
+- name: "deploy | ensure have permissions set to 0764 in directory: {{ deployment_directory }}"
+  command: find {{ deployment_directory }} -type f -exec chmod 0764 {} \;
+
+- name: "deploy | ensure directories have permissions set to 2775 plus sticky bit in directory: {{ deployment_directory }}"
+  command: find {{ deployment_directory }} -type d -exec chmod 2775 {} \;
+
+- name: "deploy | ensure have correct ownership in directory: {{ deployment_directory }}"
+  command: find {{ deployment_directory }} -exec chown www-data:www-data {} \;

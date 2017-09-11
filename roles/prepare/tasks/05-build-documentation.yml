@@ -1,0 +1,12 @@
+---
+# TODO to be implemented based on the provided documentation stratety - maybe a command like on install-dependencies
+
+#- name: local | generate swagger documentation
+#  shell: php artisan l5-swagger:generate
+#  args:
+#    chdir: "{{ application_directory }}/build/src"
+
+#- name: local | publish L5Swagger assets
+#  shell: php artisan vendor:publish --provider="L5Swagger\L5SwaggerServiceProvider" --tag=assets --force
+#  args:
+#    chdir: "{{ application_directory }}/build/src"

@@ -1,0 +1,19 @@
+---
+- name: "deploy | plesk hack - remove {{ deployment_directory }}/httpdocs"
+  shell: "mv {{ deployment_directory }}/httpdocs {{ deployment_directory }}/httpdocs_bak"
+
+- name: "deploy | plesk hack - move release folder to httpdocs2"
+  shell: "mv {{ deployment_directory }}/releases/{{ release_time }} {{ deployment_directory }}/httpdocs"
+
+- name: "deploy | plesk hack - set file permissions on application files"
+  file:
+    path: "{{ deployment_directory }}/httpdocs"
+    mode: u=rwX,g=rX,o=rX
+    owner: "{{ current_folder_owner }}"
+    group: "{{ current_folder_group }}"
+    recurse: no
+
+- name: "deploy | plesk hack - remove {{ deployment_directory }}/httpdocs"
+  file:
+    path: "{{ deployment_directory }}/httpdocs_bak"
+    state: absent

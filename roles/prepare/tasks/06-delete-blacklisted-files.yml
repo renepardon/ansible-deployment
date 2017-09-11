@@ -1,0 +1,6 @@
+---
+- name: local | delete blacklisted files
+  file:
+    state: absent
+    path: "{{ application_directory }}/build/src/{{ item }}"
+  with_items: "{{ file_blacklist }}"

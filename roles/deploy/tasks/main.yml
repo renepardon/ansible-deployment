@@ -1,0 +1,26 @@
+---
+- include: 01-create-release-folder.yml
+- include: 02-upload-application-archive.yml
+- include: 03-uncompress-application-archive.yml
+- include: 04-remove-application-archive.yml
+- include: 05-set-file-permissions.yml
+- include: 06-link-shared-content.yml
+- include: 07-change-current-symlink.yml
+
+# TODO handle switch between laravel/symfony
+#- include: stop-worker.yml
+#- include: sync-app.yml
+#- include: ln-env.yml
+#- include: adjust-permissions.yml
+#- include: run-db-migration.yml
+#- include: warmup-app.yml
+#- include: start-worker.yml
+#- include: artisan-up.yml
+
+- include: 08-plesk-hack.yml
+  when:
+    - server_software is defined
+    - server_software == "plesk"
+
+# The tasks defined in this configuration are used for application specific actions after the deployment is done. E.g. run an artisan task or clear opcache
+- include: 999-application-specific-tasks.yml

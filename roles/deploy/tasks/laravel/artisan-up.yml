@@ -1,0 +1,7 @@
+---
+- name: "deploy | php artisan up | {{ deployment_directory }}"
+  shell: php artisan up
+  args:
+    chdir: "{{ deployment_directory }}/"
+  notify:
+    - restart php-fpm

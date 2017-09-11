@@ -1,0 +1,10 @@
+---
+- name: "deploy | php artisan config:cache | {{ deployment_directory }}"
+  shell: php artisan config:cache
+  args:
+    chdir: "{{ deployment_directory }}/"
+
+- name: "deploy | php artisan route:cache | {{ deployment_directory }}"
+  shell: php artisan route:cache
+  args:
+    chdir: "{{ deployment_directory }}/"

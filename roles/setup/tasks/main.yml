@@ -1,0 +1,42 @@
+---
+- name: setup | check if setup needs to be executed to prevent funny effects if a site is already running and stupid developers try to setup the deployment again
+  stat:
+    path: "{{ deployment_directory }}/current"
+  register: current_symlink
+
+- name: setup | create releases folder
+  file:
+    state: directory
+    mode: 0755
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+    path: "{{ deployment_directory }}/releases/1"
+  when: current_symlink.stat.exists == False
+
+- name: setup | create shared folder which contains shared files between deployments like configuration and logs and env files
+  file:
+    state: directory
+    mode: 0755
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+    path: "{{ deployment_directory }}/shared"
+  when: current_symlink.stat.exists == False
+
+- name: setup | create symlink to initial release
+  file:
+    src: "{{ deployment_directory }}/releases/1"
+    dest: "{{ deployment_directory }}/current"
+    owner: "{{ current_folder_owner }}"
+    group: "{{ current_folder_group }}"
+    state: link
+  when: current_symlink.stat.exists == False
+
+- name: setup | index.html template to first release folder
+  template:
+    src: index.html.j2
+    dest: "{{ deployment_directory }}/releases/1/index.html"
+    owner: "{{ file_owner }}"
+    group: "{{ file_group }}"
+  when: current_symlink.stat.exists == False
+  notify:
+    - restart httpd

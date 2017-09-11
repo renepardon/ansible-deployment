@@ -1,0 +1,10 @@
+---
+- name: local | extract app archive
+  shell: tar -xzf app.tar.gz
+  args:
+    chdir: "{{ application_directory }}/build/src"
+
+- name: local | remove app archive
+  file:
+    state: absent
+    path: "{{ application_directory }}/build/src/app.tar.gz"

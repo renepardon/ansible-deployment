@@ -1,0 +1,6 @@
+---
+- name: local | install project specific dependencies
+  shell: "{{ item }}"
+  args:
+    chdir: "{{ application_directory }}/build/src"
+  with_items: "{{ dependency_commands }}"

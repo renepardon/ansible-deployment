@@ -1,0 +1,6 @@
+- name: "deploy | upload {{ application_directory }}/build/dist/deploy.tar.gz to {{ deployment_directory }}/releases/{{ release_time }}/"
+  synchronize:
+    src: "{{ application_directory }}/build/dist/deploy.tar.gz"
+    dest: "{{ deployment_directory }}/releases/{{ release_time }}/"
+    rsync_opts:
+      - "--no-motd"
