@@ -1,5 +1,8 @@
 .idea
-environments/shared-vars.yml
+
+environments/development/hosts
 environments/production/hosts
+
+environments/shared-vars.yml
 
 999-application-specific-tasks.yml

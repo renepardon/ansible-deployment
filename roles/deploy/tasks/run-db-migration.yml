@@ -1,6 +1,0 @@
----
-- name: "deploy | php artisan migrate --force | {{ deployment_directory }}"
-  shell: php artisan migrate --force
-  args:
-    chdir: "{{ deployment_directory }}/"
-  when: db_migration is defined and db_migration

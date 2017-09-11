@@ -5,18 +5,30 @@
 - include: 04-remove-application-archive.yml
 - include: 05-set-file-permissions.yml
 - include: 06-link-shared-content.yml
+
+### Run database migrations if required
+- include: laravel/db-migration.yml
+  when:
+    - requires_migration | bool
+    - deploy_type == "laravel"
+
+- include: symfony/db-migration.yml
+  when:
+    - requires_migration | bool
+    - deploy_type == "symfony"
+
+### Warmup application - setup caches
+- include: symfony/warmup.yml
+  when:
+    - deploy_type == "symfony"
+
+- include: laravel/warmup.yml
+  when:
+    - deploy_type == "laravel"
+
 - include: 07-change-current-symlink.yml
 
-# TODO handle switch between laravel/symfony
-#- include: stop-worker.yml
-#- include: sync-app.yml
-#- include: ln-env.yml
-#- include: adjust-permissions.yml
-#- include: run-db-migration.yml
-#- include: warmup-app.yml
-#- include: start-worker.yml
-#- include: artisan-up.yml
-
+### Plesk? Lets cheat!
 - include: 08-plesk-hack.yml
   when:
     - server_software is defined

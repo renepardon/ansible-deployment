@@ -19,6 +19,19 @@ current_folder_group: psaserv
 file_owner: deployer
 file_group: psacln
 
+# Define symlinks which should be created from within the shared
+# folder into the application itself. This is different form laravel
+# and symfony applications as we have parameters.yml and .env
+# depending on the project setup
+#------------------------------------------------------------------
+application_symlinks:
+  - source: parameters.yml
+    target: app/config/parameters.yml
+  - source: var
+    target: web/var
+#  - source: .env
+#    target: .env
+
 # Define a list of "dependency" commands to execute to install
 # required dependencies/packages which your application needs to
 # build the application package
@@ -29,6 +42,11 @@ dependency_commands:
   - composer install --no-dev
   - php app/console assetic:dump
   - php app/console cache:clear --env=prod
+
+# Set this to yes if you application requires to execute database
+# migrations on deployment
+#------------------------------------------------------------------
+requires_migration: no
 
 # The following service names are different from host to host so
 # you have to choose the correct name to restart PHP and HTTPD
@@ -77,3 +95,5 @@ file_blacklist:
   - .travis.yml
   - .gitmessage
   - .gitmodules
+  - package-lock.json
+  - yarn.lock
