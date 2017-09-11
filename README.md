@@ -33,7 +33,6 @@ ansible-playbook playbook-setup.yml -i environments/production/hosts --ask-becom
 ```
 
 # Prepare deployment
-<<<<<<< HEAD
 
 ### Available extra vars/CLI parameters
 
@@ -42,8 +41,6 @@ Default deployment branch is master but you can change to a release branch for e
 - deploy_branch (master, develop, release/<tagname>) - set to the "release" branch which should be deployed 
 
 ### Default command to excute
-=======
->>>>>>> 5f00b20434e202e6dcd495534295d40b08693e2b
 
 ```bash
 ansible-playbook -i localhost, playbook-prepare-deploy.yml --extra-vars "deploy_branch=release/9.9.9"
