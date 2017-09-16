@@ -3,3 +3,4 @@
   service:
     name: "{{ php_fpm_service_name }}"
     state: restarted
+  ignore_errors: yes

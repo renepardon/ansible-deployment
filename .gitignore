@@ -1,6 +1,7 @@
 .idea
 
 environments/development/hosts
+environments/staging/hosts
 environments/production/hosts
 
 environments/shared-vars.yml
