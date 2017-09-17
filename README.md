@@ -11,8 +11,9 @@ Execute the following command within your project root directory:
 # Configuration
 
 1. Copy *environments/shared-vars.yml.example* to *environments/shared-vars.yml* and adjust for your current project
-2. Copy *environments/production/hosts.example* to *environments/production/hosts* and set the correct host where you want to deploy the application
-3. Copy *roles/deploy/tasks/999-application-specific-tasks.yml.example* to *roles/deploy/tasks/999-application-specific-tasks.yml* and add some deployment specific tasks if required (e.g. clear opcache, create symlinks, run application specific commands)
+2. Copy *environments/<...>/hosts.example* to *environments/<...>/hosts* and set the correct host where you want to deploy the application
+3. Copy *environments/<...>/group_vars/all.yml.example* to *environments/<...>/group_vars/all.yml.example*  Then you can configure multiple deploy paths on the same server for differnt environments e.g.
+4. Copy *roles/deploy/tasks/999-application-specific-tasks.yml.example* to *roles/deploy/tasks/999-application-specific-tasks.yml* and add some deployment specific tasks if required (e.g. clear opcache, create symlinks, run application specific commands)
 
 Why do we need 3.? Because we may have application specific deployment tasks which should be executed. But they differ from application to application so we won't add them to GIT.
 

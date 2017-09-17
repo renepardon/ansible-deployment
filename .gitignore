@@ -4,6 +4,10 @@ environments/development/hosts
 environments/staging/hosts
 environments/production/hosts
 
+environments/development/group_vars/all.yml
+environments/staging/group_vars/all.yml
+environments/production/group_vars/all.yml
+
 environments/shared-vars.yml
 
 999-application-specific-tasks.yml
