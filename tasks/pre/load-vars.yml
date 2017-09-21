@@ -1,3 +1,6 @@
 ---
 - include_vars: "environments/shared-vars.yml"
+# We ignore errors because we may not overwrite shared-vars.yml with group_vars. Especially not for localhost
+# preparation of the deployment package
 - include_vars: "{{ inventory_dir }}/group_vars/all.yml"
+  ignore_errors: yes
