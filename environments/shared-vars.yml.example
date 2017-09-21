@@ -97,3 +97,7 @@ file_blacklist:
   - .gitmodules
   - package-lock.json
   - yarn.lock
+  - build.xml
+  - doxygen.conf
+  - phpspec.yml
+  - Capfile
