@@ -28,6 +28,11 @@
 
 - include: 07-change-current-symlink.yml
 
+### Restart worker services when defined
+- include: laravel/restart-worker.yml
+  when:
+    - deploy_type == "laravel"
+
 ### Plesk? Lets cheat!
 - include: 08-plesk-hack.yml
   when:
@@ -36,3 +41,14 @@
 
 # The tasks defined in this configuration are used for application specific actions after the deployment is done. E.g. run an artisan task or clear opcache
 - include: 999-application-specific-tasks.yml
+
+# Restart webserver and php FPM
+- name: deploy | restart httpd
+  service:
+    name: "{{ httpd_service_name }}"
+    state: restarted
+
+- name: deploy | restart php-fpm
+  service:
+    name: "{{ php_fpm_service_name }}"
+    state: restarted

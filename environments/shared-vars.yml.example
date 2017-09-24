@@ -48,6 +48,14 @@ dependency_commands:
 #------------------------------------------------------------------
 requires_migration: no
 
+# Set to yes if you want to restart supervisord workers
+#------------------------------------------------------------------
+supervisord: no
+
+# Array of supervisord names/groups to restart
+#------------------------------------------------------------------
+supervisord_workers: []
+
 # The following service names are different from host to host so
 # you have to choose the correct name to restart PHP and HTTPD
 # services

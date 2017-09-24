@@ -1,0 +1,18 @@
+---
+#- name: deploy | check if /etc/supervisor/supervisord.conf exists
+#  stat: path=/etc/supervisor/supervisord.conf
+#  register: supervisord_conf
+#
+#- name: deploy | restart supervisord
+#  supervisorctl:
+#    name: "{{ item }}"
+#    state: restarted
+#  with_items: "{{ supervisord_workers }}"
+#  when:
+#    - supervisord_conf.stat.exists
+#    - supervisord | bool
+
+- name: "deploy | php artisan queue:restart | {{ deployment_directory }}"
+  shell: php artisan queue:restart
+  args:
+    chdir: "{{ deployment_directory }}/releases/{{ release_time }}/"
