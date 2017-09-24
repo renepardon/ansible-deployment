@@ -3,5 +3,8 @@
   shell: php artisan migrate --force
   args:
     chdir: "{{ deployment_directory }}/releases/{{ release_time }}/"
-  when: requires_migration is defined and requires_migration
+  when:
+    - requires_migration is defined
+    - requires_migration | bool
+    - db_migration is defined and db_migration == yes
   run_once: true
