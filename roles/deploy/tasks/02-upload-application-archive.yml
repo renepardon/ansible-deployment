@@ -2,7 +2,7 @@
   synchronize:
     src: "{{ application_directory }}/build/dist/deploy.tar.gz"
     dest: "{{ deployment_directory }}/releases/{{ release_time }}/"
-    # rsync_path: SUDO_ASKPASS=/usr/bin/ssh-askpass sudo -A /usr/bin/rsync
+    rsync_path: SUDO_ASKPASS=/usr/bin/ssh-askpass sudo -A /usr/bin/rsync
     compress: yes
     checksum: yes
     delete: yes
