@@ -6,5 +6,5 @@
   when:
     - requires_migration is defined
     - requires_migration | bool
-    - db_migration is defined and db_migration == "yes"
-#  run_once: true
+    - db_migration is defined and db_migration == yes
+  run_once: true
